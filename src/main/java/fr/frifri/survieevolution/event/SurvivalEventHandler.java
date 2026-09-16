@@ -2,6 +2,8 @@ package fr.frifri.survieevolution.event;
 
 import fr.frifri.survieevolution.data.ExplorationTracker;
 import fr.frifri.survieevolution.data.SurvivalProfileManager;
+import fr.frifri.survieevolution.data.TravelTracker;
+
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
@@ -28,6 +30,7 @@ public final class SurvivalEventHandler {
         ServerTickEvents.END_SERVER_TICK.register(server -> {
             for (var player : server.getPlayerList().getPlayers()) {
                 ExplorationTracker.track(player);
+                TravelTracker.track(player);
             }
         });
 
