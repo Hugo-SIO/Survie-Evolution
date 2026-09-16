@@ -8,6 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import fr.frifri.survieevolution.data.SurvivalAttachments;
+import fr.frifri.survieevolution.event.SurvivalEventHandler;
+import fr.frifri.survieevolution.command.SurvivalCommands;
 
 public class SurvieEvolution implements ModInitializer {
 	public static final String MOD_ID = "survieevolution";
@@ -20,6 +22,8 @@ public class SurvieEvolution implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		SurvivalAttachments.initialize();
+		SurvivalEventHandler.initialize();
+		SurvivalCommands.initialize();
 	}
 
 	public static ResourceLocation id(String path) {
