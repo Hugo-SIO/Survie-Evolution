@@ -27,6 +27,10 @@ public final class SurvivalCommands {
         SurvivalProfile profile = SurvivalProfileManager.getProfile(player);
 
         player.sendSystemMessage(
+                Component.literal("Style: " + profile.getDominantStyle())
+        );
+
+        player.sendSystemMessage(
                 Component.literal("=== Survival Evolution ===")
         );
 

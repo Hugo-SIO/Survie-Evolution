@@ -90,4 +90,42 @@ public class SurvivalProfile {
     public void addTravel(int amount) {
         travel += amount;
     }
+
+    public SurvivalStyle getDominantStyle() {
+        int max = Math.max(
+                exploration,
+                Math.max(
+                        combat,
+                        Math.max(
+                                farming,
+                                Math.max(
+                                        mining,
+                                        Math.max(building, travel)
+                                )
+                        )
+                )
+        );
+
+        if (max == mining) {
+            return SurvivalStyle.MINER;
+        }
+
+        if (max == exploration) {
+            return SurvivalStyle.EXPLORER;
+        }
+
+        if (max == combat) {
+            return SurvivalStyle.COMBATANT;
+        }
+
+        if (max == farming) {
+            return SurvivalStyle.FARMER;
+        }
+
+        if (max == building) {
+            return SurvivalStyle.BUILDER;
+        }
+
+        return SurvivalStyle.NOMAD;
+    }
 }
