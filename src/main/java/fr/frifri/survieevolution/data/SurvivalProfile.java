@@ -128,4 +128,42 @@ public class SurvivalProfile {
 
         return SurvivalStyle.NOMAD;
     }
+
+    public AdaptationLevel getAdaptationLevel() {
+        int max = Math.max(
+                exploration,
+                Math.max(
+                        combat,
+                        Math.max(
+                                farming,
+                                Math.max(
+                                        mining,
+                                        Math.max(building, travel)
+                                )
+                        )
+                )
+        );
+
+        if (max <= 0) {
+            return AdaptationLevel.NONE;
+        }
+
+        if (max < 10) {
+            return AdaptationLevel.DETECTED;
+        }
+
+        if (max < 25) {
+            return AdaptationLevel.LIGHT;
+        }
+
+        if (max < 50) {
+            return AdaptationLevel.ADVANCED;
+        }
+
+        if (max < 100) {
+            return AdaptationLevel.STRONG;
+        }
+
+        return AdaptationLevel.EXTREME;
+    }
 }

@@ -31,6 +31,13 @@ public final class SurvivalCommands {
         );
 
         player.sendSystemMessage(
+                Component.literal(
+                        "Adaptation: " + profile.getAdaptationLevel()
+                                + " (" + profile.getAdaptationLevel().getValue() + ")"
+                )
+        );
+
+        player.sendSystemMessage(
                 Component.literal("=== Survival Evolution ===")
         );
 
