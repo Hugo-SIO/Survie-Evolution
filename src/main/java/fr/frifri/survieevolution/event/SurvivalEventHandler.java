@@ -5,6 +5,7 @@ import fr.frifri.survieevolution.data.SurvivalProfileManager;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
+import net.minecraft.tags.BlockTags;
 
 public final class SurvivalEventHandler {
 
@@ -13,7 +14,11 @@ public final class SurvivalEventHandler {
 
     public static void initialize() {
         PlayerBlockBreakEvents.AFTER.register((world, player, pos, state, blockEntity) -> {
-            SurvivalProfileManager.getProfile(player).addMining(1);
+            if (state.is(BlockTags.CROPS)) {
+                SurvivalProfileManager.getProfile(player).addFarming(1);
+            } else {
+                SurvivalProfileManager.getProfile(player).addMining(1);
+            }
         });
 
         ServerTickEvents.END_SERVER_TICK.register(server -> {
