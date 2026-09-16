@@ -26,16 +26,16 @@ public final class AdaptationManager {
         ServerPlayer player,
         SurvivalProfile profile
     ) {
-        if (profile.getAdaptationLevel().getValue() >= 3
-                && !profile.isMinerAdaptationNotified()) {
-
-            player.sendSystemMessage(
-                    net.minecraft.network.chat.Component.literal(
-                            "§7[Survie Evolution] §fVotre expérience minière commence à vous adapter à la vie souterraine."
+        if (profile.getAdaptationLevel().getValue() >= 3) {
+            player.addEffect(
+                    new net.minecraft.world.effect.MobEffectInstance(
+                            net.minecraft.world.effect.MobEffects.NIGHT_VISION,
+                            220,
+                            0,
+                            false,
+                            false
                     )
             );
-
-            profile.setMinerAdaptationNotified(true);
         }
     }
 
