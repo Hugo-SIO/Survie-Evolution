@@ -4,6 +4,7 @@ import fr.frifri.survieevolution.data.ExplorationTracker;
 import fr.frifri.survieevolution.data.SurvivalProfileManager;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 
 public final class SurvivalEventHandler {
 
@@ -19,6 +20,12 @@ public final class SurvivalEventHandler {
             for (var player : server.getPlayerList().getPlayers()) {
                 ExplorationTracker.track(player);
             }
+        });
+
+        AttackEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
+            SurvivalProfileManager.getProfile(player).addCombat(1);
+
+            return net.minecraft.world.InteractionResult.PASS;
         });
     }
 }
