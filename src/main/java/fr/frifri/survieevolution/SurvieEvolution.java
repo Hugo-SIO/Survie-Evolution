@@ -7,6 +7,8 @@ import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import fr.frifri.survieevolution.data.SurvivalAttachments;
+
 public class SurvieEvolution implements ModInitializer {
 	public static final String MOD_ID = "survieevolution";
 
@@ -17,11 +19,7 @@ public class SurvieEvolution implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		// This code runs as soon as Minecraft is in a mod-load-ready state.
-		// However, some things (like resources) may still be uninitialized.
-		// Proceed with mild caution.
-
-		LOGGER.info("Hello Fabric world!");
+		SurvivalAttachments.initialize();
 	}
 
 	public static ResourceLocation id(String path) {
