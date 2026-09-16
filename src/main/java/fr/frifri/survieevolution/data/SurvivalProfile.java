@@ -12,7 +12,9 @@ public class SurvivalProfile {
                     Codec.INT.fieldOf("farming").forGetter(SurvivalProfile::getFarming),
                     Codec.INT.fieldOf("mining").forGetter(SurvivalProfile::getMining),
                     Codec.INT.fieldOf("building").forGetter(SurvivalProfile::getBuilding),
-                    Codec.INT.fieldOf("travel").forGetter(SurvivalProfile::getTravel)
+                    Codec.INT.fieldOf("travel").forGetter(SurvivalProfile::getTravel),
+                    Codec.BOOL.optionalFieldOf("miner_adaptation_notified", false)
+                        .forGetter(profile -> profile.minerAdaptationNotified)
             ).apply(instance, SurvivalProfile::new)
     );
 
@@ -23,17 +25,20 @@ public class SurvivalProfile {
     private int building;
     private int travel;
 
+    private boolean minerAdaptationNotified;
+
     public SurvivalProfile() {
-        this(0, 0, 0, 0, 0, 0);
+        this(0, 0, 0, 0, 0, 0, false);
     }
 
     public SurvivalProfile(
-            int exploration,
-            int combat,
-            int farming,
-            int mining,
-            int building,
-            int travel
+        int exploration,
+        int combat,
+        int farming,
+        int mining,
+        int building,
+        int travel,
+        boolean minerAdaptationNotified
     ) {
         this.exploration = exploration;
         this.combat = combat;
@@ -41,6 +46,7 @@ public class SurvivalProfile {
         this.mining = mining;
         this.building = building;
         this.travel = travel;
+        this.minerAdaptationNotified = minerAdaptationNotified;
     }
 
     public int getExploration() {
@@ -165,5 +171,13 @@ public class SurvivalProfile {
         }
 
         return AdaptationLevel.EXTREME;
+    }
+
+    public boolean isMinerAdaptationNotified() {
+        return minerAdaptationNotified;
+    }
+
+    public void setMinerAdaptationNotified(boolean minerAdaptationNotified) {
+        this.minerAdaptationNotified = minerAdaptationNotified;
     }
 }
